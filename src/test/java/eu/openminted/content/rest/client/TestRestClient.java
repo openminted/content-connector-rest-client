@@ -50,7 +50,7 @@ public class TestRestClient {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void testSearch() throws JsonProcessingException {
 
         System.out.println("Get search result");
@@ -59,7 +59,7 @@ public class TestRestClient {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void testGetSourceName() {
 
         System.out.println("Get source name");
@@ -67,7 +67,7 @@ public class TestRestClient {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void testDownloadFulltext() throws IOException {
 
         System.out.println("Download fulltext");
@@ -79,7 +79,7 @@ public class TestRestClient {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     public void testFetchMetadata() throws IOException {
         System.out.println("Fetch metadata");
         InputStream inputStream = contentConnectorRestClient.fetchMetadata(query);
