@@ -1,4 +1,4 @@
-package eu.openminted.content.rest.client;
+package eu.openminted.content;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

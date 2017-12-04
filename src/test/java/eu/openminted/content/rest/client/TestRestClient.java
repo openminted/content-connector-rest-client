@@ -2,6 +2,7 @@ package eu.openminted.content.rest.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.openminted.content.RestClientConfiguration;
 import eu.openminted.content.connector.Query;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
