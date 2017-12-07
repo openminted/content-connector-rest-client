@@ -8,9 +8,9 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 
 @Configuration
-public class TestRestClientConfiguration {
+public class RestClientTestConfiguration {
     @Bean
-    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() throws IOException {
+    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         final PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
         ppc.setLocation(new ClassPathResource("application.properties"));
         return ppc;

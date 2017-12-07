@@ -3,6 +3,8 @@ package eu.openminted.content.rest.client;
 import eu.openminted.content.RestClientConfiguration;
 import eu.openminted.content.connector.Query;
 import eu.openminted.content.connector.SearchResult;
+import eu.openminted.registry.core.domain.Facet;
+import eu.openminted.registry.core.domain.Value;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -23,7 +25,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RestClientConfiguration.class})
-public class TestRestClient {
+public class RestClientConnectorTest {
 
     @Autowired
     private ContentConnectorRestClient contentConnectorRestClient;
@@ -61,9 +63,23 @@ public class TestRestClient {
         query.getParams().get("documenttype").add("Fulltext");
         query.getParams().get("documentlanguage").add("Nl");
 
-        SearchResult result = contentConnectorRestClient.search(query);
+        query.getFacets().add("rightsstmtname");
+        query.getFacets().add("documentlanguage");
+        query.getFacets().add("documenttype");
+        query.getFacets().add("publicationtype");
+        query.getFacets().add("publicationyear");
 
-        assertNotEquals(null,  result);
+        SearchResult searchResult = contentConnectorRestClient.search(query);
+
+        assertNotEquals(null,  searchResult);
+
+        for (Facet facet : searchResult.getFacets()) {
+            int totalHits = 0;
+            for (Value value : facet.getValues()) {
+                totalHits += value.getCount();
+            }
+            assertEquals(searchResult.getTotalHits(), totalHits);
+        }
     }
 
     @Test
