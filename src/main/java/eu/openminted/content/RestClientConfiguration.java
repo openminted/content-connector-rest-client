@@ -9,8 +9,4 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan("eu.openminted.content")
 public class RestClientConfiguration {
 
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

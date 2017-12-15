@@ -45,8 +45,8 @@ public class RestClientConnectorTest {
         query.setParams(new HashMap<>());
         query.getParams().put("sort", new ArrayList<>());
         query.getParams().get("sort").add("__indexrecordidentifier asc");
-        query.getParams().put("licence", new ArrayList<>());
-        query.getParams().get("licence").add("Open Access");
+        query.getParams().put("rights", new ArrayList<>());
+        query.getParams().get("rights").add("Open Access");
         query.getParams().put("publicationyear", new ArrayList<>());
         query.getParams().put("documenttype", new ArrayList<>());
         query.getParams().put("documentlanguage", new ArrayList<>());
@@ -63,7 +63,7 @@ public class RestClientConnectorTest {
         query.getParams().get("documenttype").add("Fulltext");
         query.getParams().get("documentlanguage").add("Nl");
 
-        query.getFacets().add("rightsstmtname");
+        query.getFacets().add("rights");
         query.getFacets().add("documentlanguage");
         query.getFacets().add("documenttype");
         query.getFacets().add("publicationtype");
@@ -75,7 +75,9 @@ public class RestClientConnectorTest {
 
         for (Facet facet : searchResult.getFacets()) {
             int totalHits = 0;
+            System.out.println("Current facet: " + facet.getField());
             for (Value value : facet.getValues()) {
+                System.out.println("Current value: " + value.getValue() + " : " + value.getCount());
                 totalHits += value.getCount();
             }
             assertEquals(searchResult.getTotalHits(), totalHits);
@@ -92,6 +94,8 @@ public class RestClientConnectorTest {
 
         assertNotEquals(null,  sourceName);
         assertNotEquals("",  sourceName);
+
+        System.out.println("Source name: " + sourceName);
     }
 
     @Test
